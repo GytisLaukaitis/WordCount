@@ -1,0 +1,17 @@
+But Why?
+Why bother using a semantic versioning scheme? What's wrong with just updating numbers arbitrarily? The reason is simple: Version numbers help your users understand something about the nature of the changes they can expect. If you don't follow a pattern, they are left guessing. And this frustrates people.
+
+Following SemVer introduces rigor on two fronts:
+
+It sends clear signals to users about the depth of changes they can expect in a release.
+It sends a clear signal to your developers about what is, and what is not, allowed when it comes to changing the code.
+I cannot understate the importance of (2). SemVer helps us impose self-discipline, which in turn minimizes both internal and external disruption.
+
+Reorganizing, Refactoring, and Renaming
+There is no clearer way to state the point than this: If you reorganize the package structure of your public API, or if you do a major renaming, or if you choose to change the methods/structs/classes/etc of your public API, you must increment the major version number.
+
+That's it. There is no grey area here. Such changes mean that anyone who's using your code will experience breakage.
+
+When it comes to working on minor updates, dealing with this means exercising discipline. Yes, the package structure might be poor. Yes, the code might be ugly. But you must wait until the right moment to fix that.
+
+Of course, it's okay to make internal changes that don't touch any public API items. So minor internal-only refactoring can be done in minor, and even patch, releases (though we don't recommend doing it in patch releases).

@@ -1,0 +1,12 @@
+Stop rearchitecting your code! The professional developer values stability over "code purity." Instead of pursuing a Shangra-La vision of code perfection with each and every release, just be nice and write stable APIs. In this post, I talk about taking practical steps toward writing code that remains stable over time.
+
+The Non-Goal
+It is completely unhelpful to begin with a suggestion like this:
+
+When you write code, make it future-proof.
+
+If history teaches us anything, it's that we are lousy predictors of what the future holds. Of course it is a good practice to strive toward clean APIs, flexible design, and thoughtful defaults. But inevitably, your users and emerging requirements will surprise you.
+
+What I want to talk about is how to best deal with those surprises, and how to avoid introducing surprises (and frustration) to those who use your code.
+
+Versions and SemVer
