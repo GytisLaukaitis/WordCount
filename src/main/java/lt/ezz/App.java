@@ -1,3 +1,5 @@
+package lt.ezz;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -50,7 +52,7 @@ public class App {
 
         // this reads content from all files into an ArrayList of lines.
         // Potential OutOfMemory exception, if the files are huge
-        try(Stream<Path> paths = Files.find(Paths.get("src/main/resources/input"), 10, (path, basicFileAttributes) -> {
+        try(Stream<Path> paths = Files.find(Paths.get("input"), 10, (path, basicFileAttributes) -> {
             return !basicFileAttributes.isDirectory();
         })) {
             paths.forEach(filePath -> {
@@ -94,11 +96,11 @@ public class App {
 
 
         // write results into 4 separate files. Multiple PrintWriters look ugly, I know :)
-        try (PrintWriter pw0 = new PrintWriter("src/main/resources/output/exceptions.txt", "UTF-8");
-             PrintWriter pw1 = new PrintWriter("src/main/resources/output/AH.txt", "UTF-8");
-             PrintWriter pw2 = new PrintWriter("src/main/resources/output/HN.txt", "UTF-8");
-             PrintWriter pw3 = new PrintWriter("src/main/resources/output/OU.txt", "UTF-8");
-             PrintWriter pw4 = new PrintWriter("src/main/resources/output/VZ.txt", "UTF-8");
+        try (PrintWriter pw0 = new PrintWriter("output/exceptions.txt", "UTF-8");
+             PrintWriter pw1 = new PrintWriter("output/AH.txt", "UTF-8");
+             PrintWriter pw2 = new PrintWriter("output/HN.txt", "UTF-8");
+             PrintWriter pw3 = new PrintWriter("output/OU.txt", "UTF-8");
+             PrintWriter pw4 = new PrintWriter("output/VZ.txt", "UTF-8");
 
         ) {
             Map<Integer, PrintWriter> writers = new HashMap<Integer, PrintWriter>();
@@ -119,4 +121,34 @@ public class App {
         }
     }
 
+    /**
+     * A map-like structure to make code cleaner
+     */
+    public static class Tuple {
+
+        private String myString;
+        private Integer myNumber;
+
+        public Tuple(String myString, Integer myNumber) {
+            this.myString = myString;
+            this.myNumber = myNumber;
+        }
+
+        public void setMyNumber(Integer number) {
+            this.myNumber = number;
+        }
+
+        public Integer getMyNumber() {
+            return myNumber;
+        }
+
+        public String getMyString() {
+            return myString;
+        }
+
+        public String toString() {
+            return myString + " : " + myNumber;
+        }
+
+    }
 }
