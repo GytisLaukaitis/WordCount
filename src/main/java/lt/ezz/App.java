@@ -19,8 +19,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-            App app = new App();
-            app.run();
+        App app = new App();
+        app.run();
 
     }
 
@@ -32,14 +32,14 @@ public class App {
         Function<Tuple, Integer> strGrouping = s -> {
             if (s.getMyString().trim().length() > 0) {
                 char firstLetter = s.getMyString().toLowerCase().trim().charAt(0);
-                Integer result = 0;
+                int result = 0;
                 if (firstLetter <= 'g') {
                     result = 1;
-                } else if (firstLetter >= 'h' && firstLetter <= 'n') {
+                } else if (firstLetter <= 'n') {
                     result = 2;
-                } else if (firstLetter >= 'o' && firstLetter <= 'u') {
+                } else if (firstLetter <= 'u') {
                     result = 3;
-                } else if (firstLetter >= 'v' && firstLetter <= 'z') {
+                } else if (firstLetter <= 'z') {
                     result = 4;
                 }
                 return result;
@@ -52,7 +52,7 @@ public class App {
 
         // this reads content from all files into an ArrayList of lines.
         // Potential OutOfMemory exception, if the files are huge
-        try(Stream<Path> paths = Files.find(Paths.get("input"), 10, (path, basicFileAttributes) -> {
+        try (Stream<Path> paths = Files.find(Paths.get("input"), 10, (path, basicFileAttributes) -> {
             return !basicFileAttributes.isDirectory();
         })) {
             paths.forEach(filePath -> {
@@ -69,7 +69,7 @@ public class App {
         }
 
         // split lines into words, filter out white spaces
-        List<String> allWords =  allLines
+        List<String> allWords = allLines
                 .stream()
                 .flatMap(l -> Arrays.stream(l.split("\\W+")))
                 .filter(s -> s.trim().length() > 0)
@@ -113,7 +113,7 @@ public class App {
             partitions
                     .entrySet()
                     .stream()
-                    .forEachOrdered( p ->
+                    .forEachOrdered(p ->
                             p.getValue()
                                     .stream()
                                     .forEach(writers.get(p.getKey())::println)
@@ -126,7 +126,7 @@ public class App {
      */
     public static class Tuple {
 
-        private String myString;
+        private final String myString;
         private Integer myNumber;
 
         public Tuple(String myString, Integer myNumber) {
